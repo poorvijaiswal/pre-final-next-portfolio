@@ -18,11 +18,11 @@ export default function Model(props) {
     console.log(names);
     useEffect(() => {
         actions[names[0]].reset().fadeIn(0.5).play();
-    }, [])
+    }, [actions, names])
 
     return (
         <group ref={group} {...props} dispose={null}
-            scale={1.5} rotation={[0.2, 0.5, 0]} position={[0, -1, 0]}
+            scale={1.35} rotation={[0.2, 0.5, 0]} position={[0, -0.3, 0]}
         >
             <group name="Sketchfab_Scene">
                 <group name="holo" scale={0.107}>

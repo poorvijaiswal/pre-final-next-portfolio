@@ -21,7 +21,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={clsx(inter.variable, "bg-background text-foreground")}>
+      <body className={clsx(inter.variable, "bgGradient text-foreground")}>
         {children}
       </body>
     </html>

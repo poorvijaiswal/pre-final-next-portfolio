@@ -73,11 +73,18 @@
 .radialContainer {
   z-index: 1;
   position: absolute;
-  height: 100%;
+  /* height: 100%; */
   width: 100%;
-  background: linear-gradient(to bottom, rgb(123, 8, 255, 0.9), rgb(123, 8, 255, 0.87));
+  /* background: linear-gradient(to bottom, rgb(123, 8, 255, 0.9), rgb(123, 8, 255, 0.87)); */
+
+  background: linear-gradient(to right, #131523 0%, #110638 50%, #131523 100%);
 }
 
-.bgGradient {
+/* .bgGradient {
   background: linear-gradient(to bottom, rgb(123, 8, 255, 0.9), rgb(123, 8, 255, 0.87));
+} */
+
+.bgGradient {
+
+  background: linear-gradient(to right, #131523 0%, #110638 100%);
 }

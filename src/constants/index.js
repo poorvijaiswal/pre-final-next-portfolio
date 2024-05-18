@@ -9,7 +9,6 @@ export const experiences = [
         date: "March 2020 - April 2021",
         points: [
             "Developing and maintaining web applications using React.js and other related technologies.",
-            "Collaborating with cross-functional teams including designers, product managers, and other developers to create high-quality products.",
             "Implementing responsive design and ensuring cross-browser compatibility.",
         ],
     },
@@ -20,9 +19,7 @@ export const experiences = [
         iconBg: "#E6DEDD",
         date: "Jan 2021 - Feb 2022",
         points: [
-            "Developing and maintaining web applications using React.js and other related technologies.",
-            "Collaborating with cross-functional teams including designers, product managers, and other developers to create high-quality products.",
-
+            "Developing and maintaining web applications using React.js and other related technologies."
         ],
     },
     {
@@ -33,7 +30,6 @@ export const experiences = [
         date: "Jan 2022 - Jan 2023",
         points: [
             "Developing and maintaining web applications using React.js and other related technologies.",
-            "Collaborating with cross-functional teams including designers, product managers, and other developers to create high-quality products.",
             "Implementing responsive design and ensuring cross-browser compatibility.",
         ],
     },
@@ -46,7 +42,6 @@ export const experiences = [
         points: [
             "Developing and maintaining web applications using React.js and other related technologies.",
             "Implementing responsive design and ensuring cross-browser compatibility.",
-            "Participating in code reviews and providing constructive feedback to other developers.",
         ],
     },
 ];

@@ -1,4 +1,4 @@
-import { Github, Home, Linkedin, Notebook, Palette, Phone, Pointer, Twitter, User } from 'lucide-react';
+import { BookOpenCheck, Github, Home, Instagram, Linkedin, Notebook, PaperclipIcon, Phone, Pointer, User } from 'lucide-react';
 import Link from 'next/link';
 import React from 'react'
 
@@ -9,8 +9,8 @@ const NavButton = ({ x, y, label, link, icon, newTab }) => {
                 return <Home className='w-full h-auto' strokeWidth={1.5} />
             case "about":
                 return <User className='w-full h-auto' strokeWidth={1.5} />
-            case "projects":
-                return <Palette className='w-full h-auto' strokeWidth={1.5} />
+            case "courses":
+                return <BookOpenCheck className='w-full h-auto' strokeWidth={1.5} />
             case "contact":
                 return <Phone className='w-full h-auto' strokeWidth={1.5} />
             case "github":
@@ -18,9 +18,9 @@ const NavButton = ({ x, y, label, link, icon, newTab }) => {
             case "linkedin":
                 return <Linkedin className='w-full h-auto' strokeWidth={1.5} />
             case "resume":
-                return <Notebook className='w-full h-auto' strokeWidth={1.5} />
-            case "twitter":
-                return <Twitter className='w-full h-auto' strokeWidth={1.5} />
+                return <PaperclipIcon className='w-full h-auto' strokeWidth={1.5} />
+            case "insta":
+                return <Instagram className='w-full h-auto' strokeWidth={1.5} />
             default:
                 return <Home className='w-full h-auto' strokeWidth={1.5} />
         }
