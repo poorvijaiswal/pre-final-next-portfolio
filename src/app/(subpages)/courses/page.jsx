@@ -11,7 +11,7 @@ const items = [
     title: "Javascript",
     desc: "JavaScript is a versatile programming language used to add interactivity and dynamic content to web pages. JavaScript is a fundamental skill for aspiring web developers.",
     img: "/background/js.jpg",
-    link: "https://lama.dev",
+    link: "/IDE-Project/auth",
   },
   {
     id: 2,
@@ -19,7 +19,7 @@ const items = [
     title: "C++",
     desc: "Explore foundational concepts and advanced techniques in C++ programming, including object-oriented programming principles, data structures and algorithms.",
     img: "/background/c1.jpg",
-    link: "https://lama.dev",
+    link: "/IDE-Project/auth",
   },
   {
     id: 3,
@@ -27,7 +27,7 @@ const items = [
     title: "HTML",
     desc: "Dive into the world of web development with our HTML course. Learn to create stunning and functional web pages using the building blocks of the internet.",
     img: "/background/img12.webp",
-    link: "https://lama.dev",
+    link: "/IDE-Project/auth",
   },
   {
     id: 4,
@@ -35,7 +35,7 @@ const items = [
     title: "CSS",
     desc: "Level up your website's appearance and layout with our CSS course. Learn how to make your web pages look beautiful and organized using easy-to-understand techniques.",
     img: "/background/img13.png",
-    link: "https://lama.dev",
+    link: "/IDE-Project/auth",
   },
 ];
 
