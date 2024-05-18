@@ -33,7 +33,8 @@
     "**/*.tsx",
     ".next/types/**/*.ts",
     "src/portmodels/homemodel.jsx",
-    "src/app/(subpages)/courses/page.jsx"
+    "src/app/(subpages)/courses/page.jsx",
+    "src/app/IDE-Project/auth/page.jsx"
   ],
   "exclude": [
     "node_modules"
