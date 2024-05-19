@@ -22,19 +22,19 @@ const AuthPage = (props: AuthPageProps) => {
     // if (pageLoading) return null;   // {useEffect will not get executed}
 
     useEffect(() => {
-        if (user) router.push('/codepage');
+        if (user) router.push('../../IDE-Project/codepage');
         if (pageLoading && !user) setPageLoading(false);
     }, [user, router, router]);
 
     if (pageLoading) return null;
 
     return <div className='bg-gradient-to-b from-gray-500 to-black 
-    max-h-screen relative'>
+    h-screen relative'>
         <div className='max-w-7xl mx-auto'>
             <Navbar />
             <div className="flex justify-center items-center pointer-events-none select-none h-[calc(100vh-115px)] ">
                 {/* <img src='/hero.png' alt='Hero Image'></img> */}
-                <Image src='/IDE-PROJ-IMG/hero.png' alt='Hero Image' width={700} height={650} priority style={{ width: "auto", height: "auto" }} />
+                <Image src='/IDE-PROJ-IMG/hero.png' alt='Hero Image' width={700} height={700} priority style={{ width: "auto", height: "auto" }} />
             </div>
             {authModal.isOpen && <AuthModal />}
         </div>
