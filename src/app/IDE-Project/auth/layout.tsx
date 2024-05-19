@@ -2,11 +2,14 @@
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { Inter } from "next/font/google";
-import "./IDEglobals.css";
+// import "./IDEglobals.css";
 import { RecoilRoot } from "recoil";
+import clsx from 'clsx';
 
-const inter = Inter({ subsets: ["latin"] });
-
+const inter = Inter({
+  subsets: ["latin"],
+  variable: "--font-inter",
+});
 
 export default function RootLayout({
   children,
@@ -14,11 +17,12 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <RecoilRoot>
-      <ToastContainer />
-      <div className={inter.className}>
-        {children}
-      </div>
-    </RecoilRoot>
+    <body className={clsx(inter.variable, "bgGradient text-foreground")}>
+      <RecoilRoot>
+        <ToastContainer />
+        <div className={clsx(inter.variable, "bgGradient text-foreground")}>
+          {children}
+        </div>
+      </RecoilRoot></body>
   );
 }

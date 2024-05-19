@@ -28,15 +28,14 @@ const NavButton = ({ x, y, label, link, icon, newTab }) => {
     // console.log(x, y, label, link, icon, newTab);
     return (
         <div className='absolute cursor-pointer z-45' style={{ transform: `translate(${x},${y})` }}>
-            <Link href={link}
-                target={newTab ? "_blank" : "_self"}
-                className='text-foreground rounded-full flex items-center bg-background/20 z-45 backdrop-blur-[6px]
+            <Link href={link} target={newTab ? "_blank" : "_self"}
+                className='text-foreground rounded-full flex items-center bg-background/20 z-45
                 border-yellow-200/30 border-solid border-[1px] shadow-glass-inset hover:shadow-glass-sm'
                 aria-label={label} name={label} >
-                <span className='p-4 relative peer w-14 h-14 animate-spin-slow-reverse hover:text-accent group-hover:pause'>
+                <span className='p-4 relative peer w-14 h-14 animate-spin-slow-reverse hover:text-accent group-hover:pause '>
                     {getIcon(icon)}
                     <span className='peer bg-transparent absolute top-0 left-0 w-full h-full'></span>
-                    <span className='absolute hidden peer-hover:block px-2 py-1 left-full top-1/2 mx-2 -translate-y-1/2 bg-background text-foreground text-sm rounded-md shadow-lg whitespace-nowrap'>
+                    <span className='absolute hidden peer-hover:block px-2 py-1 left-full top-1/2 mx-2 -translate-y-1/2 bg-background text-foreground text-sm rounded-md shadow-lg whitespace-nowrap backdrop-blur-0'>
                         {label}
                     </span>
                 </span>
