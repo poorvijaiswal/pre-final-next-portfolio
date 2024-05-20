@@ -32,7 +32,7 @@ const Topbar = ({ problemPage }: TopbarProps) => {
                     {problemPage && (
                         <div className='flex items-center gap-4 flex-1 justify-center'>
                             <Link
-                                href='/IDE-Project/codepage/topic1'
+                                href='/IDE-Project/codepage'
                                 className='flex items-center gap-2 font-medium max-w-[170px] text-color-dark-gray-8 cursor-pointer'
                             >
                                 <div>
@@ -44,7 +44,7 @@ const Topbar = ({ problemPage }: TopbarProps) => {
                     )}
 
                     <div className='flex items-center flex-1 space-x-4 justify-end'>
-                        <div>
+                        {/* <div>
                             <a
                                 href='https://www.buymeacoffee.com/burakorkmezz'
                                 target='_blank'
@@ -53,7 +53,7 @@ const Topbar = ({ problemPage }: TopbarProps) => {
                             >
                                 Premium
                             </a>
-                        </div>
+                        </div> */}
                         {!user && (
                             <Link href='/IDE-Project/auth' className='cursor-pointer'
                                 onClick={() => setAuthModalState((prev) => ({ ...prev, isOpen: true, type: "login" }))}
