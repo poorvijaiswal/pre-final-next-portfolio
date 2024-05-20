@@ -18,7 +18,8 @@ type TopbarProps = {
 
 const Topbar = ({ problemPage }: TopbarProps) => {
     const [user] = useAuthState(auth);
-    const setAuthModalState = useSetRecoilState(authModalState)
+    const setAuthModalState = useSetRecoilState(authModalState);
+
     return (
         <nav className='flex h-[50px] w-full flex-shrink-0 items-center px-5 bg-color-dark-layer-1 text-color-dark-gray-7 fixed top-0 p-4'>
             <div className={`flex w-full items-center justify-between ${!problemPage ? "max-w-[1200px] mx-auto" : ''}`}>
@@ -29,14 +30,8 @@ const Topbar = ({ problemPage }: TopbarProps) => {
 
                 {problemPage && (
                     <div className='flex items-center gap-4 flex-1 justify-center'>
-                        <div
-                            className='flex items-center justify-center rounded bg-dark-fill-3 hover:bg-color-dark-fill-2 h-8 w-8 cursor-pointer'
-                        // onClick={() => handleProblemChange(false)}
-                        >
-                            <FaChevronLeft />
-                        </div>
                         <Link
-                            href='/'
+                            href='/IDE-Project/codepage/topic1'
                             className='flex items-center gap-2 font-medium max-w-[170px] text-color-dark-gray-8 cursor-pointer'
                         >
                             <div>
@@ -44,12 +39,6 @@ const Topbar = ({ problemPage }: TopbarProps) => {
                             </div>
                             <p>Problem List</p>
                         </Link>
-                        <div
-                            className='flex items-center justify-center rounded bg-dark-fill-3 hover:bg-color-dark-fill-2 h-8 w-8 cursor-pointer'
-                        // onClick={() => handleProblemChange(true)}
-                        >
-                            <FaChevronRight />
-                        </div>
                     </div>
                 )}
 
