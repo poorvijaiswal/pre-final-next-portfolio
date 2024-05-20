@@ -4,8 +4,10 @@ import { useSetRecoilState } from 'recoil';
 import { useCreateUserWithEmailAndPassword } from 'react-firebase-hooks/auth';
 import { createUserWithEmailAndPassword } from 'firebase/auth';
 import { useRouter } from 'next/navigation';
-import { auth } from '@/firebase/firebase';
+import { auth, firestore } from '@/firebase/firebase';
 import { toast } from 'react-toastify';
+import { doc, setDoc } from 'firebase/firestore';
+import { posix } from 'path';
 
 type SignupProps = {
 
@@ -34,13 +36,30 @@ const Signup = (props: SignupProps) => {
         e.preventDefault();
         if (!inputs.email || !inputs.password || !inputs.displayname) return toast.error("Please ensure no fields are left empty.", { position: 'top-center', autoClose: 4000, theme: 'colored' });
         try {
+            toast.loading("Registering...", { position: 'top-center', theme: 'colored' });
             const newUser = await createUserWithEmailAndPassword(inputs.email, inputs.password);
             if (!newUser) return;
-            router.push('/');
+            const userData = {
+                email: newUser.user.email,
+                displayname: inputs.displayname,
+                uid: newUser.user.uid,
+                // photoURL: newUser.user.photoURL,
+                createdAt: new Date().toISOString(),
+                updatedAt: new Date().toISOString(),
+                likedProblems: [],
+                solvedProblems: [],
+                dislikedProblems: [],
+                starredProblems: [],
+            }
+            await setDoc(doc(firestore, "users", newUser.user.uid), userData)
+            router.push('/IDE-Project/codepage');
         } catch (error: any) {
-            toast.error(error.message, { position: 'top-center', autoClose: 4000, theme: 'colored' });
+            toast.error(error.message, { position: 'top-center', theme: 'colored' });
+        } finally {
+            console.log('Finally block is being executed');
+            toast.dismiss();
         }
-    }
+    };
 
     useEffect(() => {
         if (error) toast.error(error.message, { position: 'top-center', autoClose: 4000, theme: 'colored' });

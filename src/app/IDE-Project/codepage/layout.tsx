@@ -17,12 +17,7 @@ export default function RootLayout({
 }>) {
     return (
         <>
-            < head >
-                <title>Codepage</title>
-                <meta name="viewport" content="width=device-width" initial-scale="1"></meta>
-                <link rel='icon' href="/favicon.png" />
-            </head >
-            <body className={clsx(inter.variable, "bgGradient text-foreground")}>
+            <div className={clsx(inter.variable, "bgGradient text-foreground")}>
                 <div className="bg-color-dark-layer-2">
                     <Topbar />
                     <Sidebar />
@@ -30,7 +25,7 @@ export default function RootLayout({
                         {children}
                     </div>
                 </div>
-            </body>
+            </div>
         </>
     );
 }

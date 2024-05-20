@@ -39,7 +39,7 @@ const Login = (props: LoginProps) => {
         try {
             const existuser = await signInWithEmailAndPassword(inp.email, inp.password);
             if (!existuser) return;
-            router.push('/codepage');
+            router.push('/IDE-Project/codepage');
         } catch (error: any) {
             toast.error(error.message, { position: "top-center", autoClose: 4000, theme: 'colored' });
             // alert(error.message);
