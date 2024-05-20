@@ -4,6 +4,7 @@ import RectangleSkeleton from '@/IDE-Components/Skeletons/RectangleSkeleton';
 import { auth, firestore } from '@/firebase/firebase'
 import { DBProblem, Problem } from '@/utils/IDE-utils/types/problem'
 import { doc, getDoc, runTransaction } from 'firebase/firestore'
+import Image from 'next/image';
 import React, { useEffect, useState } from 'react'
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { AiFillDislike, AiFillLike, AiFillStar, AiOutlineLoading3Quarters } from 'react-icons/ai'
@@ -11,10 +12,11 @@ import { BsCheck2Circle } from 'react-icons/bs'
 import { toast } from 'react-toastify';
 
 type ProblemDescProps = {
-    problem: Problem
+    problem: Problem;
+    _solved: boolean;
 }
 
-const ProblemDesc = ({ problem }: ProblemDescProps) => {
+const ProblemDesc = ({ problem, _solved }: ProblemDescProps) => {
     const [user] = useAuthState(auth);
     useGetCurrentProblem(problem.id);
     // console.log(problem, "problem");
@@ -93,11 +95,11 @@ const ProblemDesc = ({ problem }: ProblemDescProps) => {
                                 >
                                     {currentProblem.difficulty}
                                 </div>
-                                {/* {(solved || _solved) && ( */}
-                                <div className='rounded p-[3px] ml-4 text-lg transition-colors duration-200 text-green-s text-dark-green-s'>
-                                    <BsCheck2Circle />
-                                </div>
-                                {/* )} */}
+                                {(solved || _solved) && (
+                                    <div className='rounded p-[3px] ml-4 text-lg transition-colors duration-200 text-green-s text-color-dark-green-s'>
+                                        <BsCheck2Circle />
+                                    </div>
+                                )}
                                 < div
                                     className='flex items-center cursor-pointer hover:bg-color-dark-fill-3 space-x-1 rounded p-[3px]  ml-4 text-lg transition-colors duration-200 text-color-dark-gray-6'
                                     onClick={handleLike}
@@ -132,7 +134,7 @@ const ProblemDesc = ({ problem }: ProblemDescProps) => {
                             {problem.examples.map((example, index) => (
                                 <div key={example.id}>
                                     <p className='font-medium text-white '>Example {index + 1}: </p>
-                                    {example.img && <img src={example.img} alt='' className='mt-3' />}
+                                    {example.img && <Image src={example.img} alt='' className='mt-3' />}
                                     <div className='example-card'>
                                         <pre>
                                             <strong className='text-white'>Input: </strong> {example.inputText}

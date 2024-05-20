@@ -20,30 +20,34 @@ interface ISubItem {
 
 const SidebarItem = ({ item }: { item?: ISidebarItem }) => {
     if (!item) {
-        return null;
+        return null;  // No change here, still return null if item is not provided
     }
+
     const { name, icon: Icon, items, path } = item;
-    const [expanded, setExpanded] = useState(false);
-    const router = useRouter();
-    const pathname = usePathname();
 
-    const onClick = () => {
-        if (items && items.length > 0) {
-            return setExpanded(!expanded);
-        }
+    // Moved useState, useRouter, usePathname, and useMemo hooks to the top of the component
+    const [expanded, setExpanded] = useState(false);  // Define state for expansion
+    const router = useRouter();  // Get router instance
+    const pathname = usePathname();  // Get current path
 
-        return router.push(path);
-    };
     const isActive = useMemo(() => {
         if (items && items.length > 0) {
             if (items.find((item) => item.path === pathname)) {
-                setExpanded(true);
-                return true;
+                setExpanded(true);  // Expand if current path is one of the submenu items
+                return true;  // Mark as active
             }
         }
 
-        return path === pathname;
-    }, [items, path, pathname]);
+        return path === pathname;  // Mark as active if current path matches the main item path
+    }, [items, path, pathname]);  // Dependencies for useMemo
+
+    const onClick = () => {
+        if (items && items.length > 0) {
+            return setExpanded(!expanded);  // Toggle expansion if there are submenu items
+        }
+
+        return router.push(path);  // Navigate to path if no submenu items
+    };
 
     return (
         <>
@@ -54,7 +58,7 @@ const SidebarItem = ({ item }: { item?: ISidebarItem }) => {
                 onClick={onClick}
             >
                 <div className="flex items-center space-x-2">
-                    {/* <IoClose size={20} /> */}
+                    {/* Removed IoClose example, keeping placeholder for Icon */}
                     <p className="text-sm font-semibold">{name} </p>
                 </div>
                 {items && items.length > 0 && <IoMdArrowDropdown size={20} />}
@@ -71,4 +75,3 @@ const SidebarItem = ({ item }: { item?: ISidebarItem }) => {
 };
 
 export default SidebarItem;
-
