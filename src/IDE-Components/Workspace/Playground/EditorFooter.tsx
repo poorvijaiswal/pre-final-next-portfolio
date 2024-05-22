@@ -1,11 +1,17 @@
+
 import React from 'react'
 import { BsChevronUp } from 'react-icons/bs';
 
 type EditorFooterProps = {
     handleSubmit: () => void;
+    runCode: (language: string, sourceCode: string, input: any) => void;
+    language: string
+    sourceCode: string
+    input: any
+    isLoading: boolean
 }
 
-const EditorFooter = ({ handleSubmit }: EditorFooterProps) => {
+const EditorFooter = ({ handleSubmit, runCode, language, sourceCode, input, isLoading }: EditorFooterProps) => {
     return (
         <div className='flex bg-color-dark-layer-1 absolute bottom-0 z-10 w-full'>
             <div className='mx-5 my-[10px] flex justify-between w-full'>
@@ -20,7 +26,7 @@ const EditorFooter = ({ handleSubmit }: EditorFooterProps) => {
                 <div className='ml-auto flex items-center space-x-4'>
                     <button
                         className='px-3 py-1.5 text-sm font-medium items-center whitespace-nowrap transition-all focus:outline-none inline-flex bg-color-dark-fill-3  hover:bg-color-dark-fill-2 text-color-dark-label-2 rounded-lg'
-                        onClick={handleSubmit}
+                        onClick={() => runCode(language, sourceCode, input)}
                     >
                         Run
                     </button>

@@ -6,6 +6,24 @@ export type Example = {
     img?: string;
 };
 
+export const playgroundOP = [
+    {
+        id: 0,
+        name: "main"
+    },
+
+    {
+        id: 1,
+        name: "inputs"
+    },
+    {
+        id: 2,
+        name: "output"
+    },
+];
+
+
+
 // local problem data
 export type Problem = {
     id: string;
@@ -14,11 +32,19 @@ export type Problem = {
     examples: Example[];
     constraints: string;
     order: number;
-    starterCode: string;
+    starterCode: CodeSnippets[];
     handlerFunction: ((fn: any) => boolean) | string;
     starterFunctionName: string;
 };
 
+export type CodeSnippets = {
+    language: string
+    starterFunctionName: string
+}
+export type handleStartFunc = {
+    language: string;
+    checkFunctionName: string;
+}
 export type DBProblem = {
     id: string;
     title: string;

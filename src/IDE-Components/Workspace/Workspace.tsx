@@ -9,6 +9,7 @@ import { problems } from '@/utils/IDE-utils/problems/index'
 import useWindowSize from '../hooks/useWindowSize'
 import { ToastContainer } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css';
+import { RecoilRoot } from 'recoil'
 
 type WorkspaceProps = {
     problem: Problem;
@@ -22,18 +23,20 @@ const Workspace = ({ problem }: WorkspaceProps) => {
     const [solved, setSolved] = useState(false);
     return (
         <div>
-            <ToastContainer />
-            <Split
-                className="split h-full" minSize={0}
-            >
-                <ProblemDesc problem={problem} _solved={solved} />
-                <div className='bg-color-dark-fill-2 max-h-screen'>
-                    <Playground problem={problem} setSuccess={setSuccess} setSolved={setSolved} />
-                    {success && <Confetti
-                        gravity={0.3}
-                        tweenDuration={4000} width={width - 8} height={height - 8} />}
-                </div>
-            </Split>
+            <RecoilRoot>
+                <ToastContainer />
+                <Split
+                    className="split h-full" minSize={0}
+                >
+                    <ProblemDesc problem={problem} _solved={solved} />
+                    <div className='bg-color-dark-fill-2 max-h-screen'>
+                        <Playground problem={problem} setSuccess={setSuccess} setSolved={setSolved} />
+                        {success && <Confetti
+                            gravity={0.3}
+                            tweenDuration={4000} width={width - 8} height={height - 8} />}
+                    </div>
+                </Split>
+            </RecoilRoot>
         </div>
 
     )

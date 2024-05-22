@@ -32,10 +32,11 @@ type ProblemPageProps = {
 }
 
 export async function getProblemById(pid: string) {
-    let response = await fetch(`http://localhost:3000/IDE-Project/api/problem/${pid}`, { method: 'GET' });
+    let response = await fetch(`http://localhost:3000/IDE-Project/api/problem/${pid}`,
+        { method: 'GET', cache: 'no-store' });
 
     const responseFinal: Problem = await response.json();
-    console.log(responseFinal, "happy to see you");
+    console.log(responseFinal, "give me updated data");
     // return {
     //     props: {
     //         response,

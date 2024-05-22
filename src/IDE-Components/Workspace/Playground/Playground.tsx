@@ -1,21 +1,22 @@
 "use client"
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import Split from 'react-split'
 import PreferenceNav from './PreferenceNav/PreferenceNav'
-import ReactCodeMirror from '@uiw/react-codemirror'
+import { cpp } from "@codemirror/lang-cpp"
 import CodeMirror from '@uiw/react-codemirror';
 import { vscodeDark } from '@uiw/codemirror-theme-vscode';
-import { javascript } from '@codemirror/lang-javascript';
+import { javascript, snippets } from '@codemirror/lang-javascript';
+import { java } from '@codemirror/lang-java';
+import { python } from '@codemirror/lang-python';
 import EditorFooter from './EditorFooter';
-import { Problem } from '@/utils/IDE-utils/types/problem';
+import { CodeSnippets, Problem } from '@/utils/IDE-utils/types/problem';
 import { toast } from 'react-toastify'
 import { useAuthState } from 'react-firebase-hooks/auth'
 import { auth, firestore } from '@/firebase/firebase'
-import { useRouter } from 'next/router'
 import { problems } from '@/utils/IDE-utils/problems'
 import { arrayUnion, doc, updateDoc } from 'firebase/firestore'
 import { useParams } from 'next/navigation'
-import { on } from 'events'
+import { executeCode } from "../../../app/IDE-Project/api/runCode"
 
 type PlaygroundProps = {
     problem: Problem;
@@ -24,30 +25,69 @@ type PlaygroundProps = {
 }
 
 const Playground = ({ problem, setSuccess, setSolved }: PlaygroundProps) => {
-    const [activeTestCaseId, setActiveTestCaseId] = useState<number>(0);
-    let [userCode, setUserCode] = useState<string>(problem.starterCode);
-    const [user] = useAuthState(auth);
+    const [isLoading, setIsLoading] = useState<boolean>(false);
+    const [language, setLanguage] = useState<string>('javascript');
+    const handleLanguageChange = (lang: any) => {
+        setLanguage(lang);
+        setWindow("main");
+        setHasRun(false);
+        setInput('');
+        // console.log(lang, "lang pg");
+    };
 
+    // Find starter code for a given language
+    const findStarterCode = (language: string, snippets: CodeSnippets[]) => {
+        const snippet = snippets.find(snippet => snippet.language === language);
+        // console.log(snippet, "snippet1");
+        return snippet ? snippet.starterFunctionName : null;
+
+    };
+    // Usage example
+    const getCodeStarter = findStarterCode(language, problem.starterCode);
+    if (getCodeStarter) {
+        // console.log(`Starter code for ${language}:`);
+        // console.log(getCodeStarter);
+    } else {
+        console.log(`No starter code found for ${language}`);
+    }
+
+    const [activeTestCaseId, setActiveTestCaseId] = useState<number>(0);
+
+    // console.log(getCodeStarter, "get code starter")
+
+    let [userCode, setUserCode] = useState<any>(getCodeStarter);
+    const [window, setWindow] = React.useState("main");
+
+    const [user] = useAuthState(auth);
     const { pid } = useParams();
-    console.log(pid);
-    // const {
-    //     query: { pid },
-    // } = useRouter();
+
+    // -----------
+    const onChange = (value: string) => {
+        console.log(value, "i am user value");
+        setUserCode(value);
+        // console.log(userCode, "code to run")
+        // localStorage.setItem(`code-${pid}`, JSON.stringify(value));
+    };
 
     useEffect(() => {
-        const code = localStorage.getItem(`code-${pid}`);
-        if (user) {
-            setUserCode(code ? JSON.parse(code) : problem.starterCode);
-        } else {
-            setUserCode(problem.starterCode);
-        }
-    }, [pid, user, problem.starterCode]);
+        // const findStarterFunction = (language: string) => problem.starterCode.find(snippet => snippet.language === language)?.starterFunctionName;
+        // const NoChangeFunction = findStarterFunction(language)
 
-    const onChange = (value: string) => {
-        console.log(value);
-        setUserCode(value);
-        localStorage.setItem(`code-${pid}`, JSON.stringify(value));
-    };
+        const savedCode = localStorage.getItem(`code-${pid}-${language}`);
+        console.log(savedCode, "saved code")
+        if (user && savedCode) {
+            setUserCode(savedCode);
+        } else {
+            setUserCode(getCodeStarter);
+        }
+        setWindow('main');
+    }, [language, user, getCodeStarter]);
+
+    useEffect(() => {
+        if (userCode) {
+            localStorage.setItem(`code-${language}`, userCode);
+        }
+    }, [userCode, language]);
 
     const handleSubmit = async () => {
         if (!user) {
@@ -59,8 +99,9 @@ const Playground = ({ problem, setSuccess, setSolved }: PlaygroundProps) => {
             return;
         }
         try {
-            userCode = userCode.slice(userCode.indexOf(problem.starterFunctionName));
             console.log(userCode, "usser code");
+            userCode = userCode.slice(userCode.indexOf(problem.starterFunctionName));
+            console.log(userCode, " sliced usser code");
             const cb = new Function(`return ${userCode}`)();
             console.log(cb, "cb");
             const handler = problems[pid as string].handlerFunction;
@@ -107,22 +148,75 @@ const Playground = ({ problem, setSuccess, setSolved }: PlaygroundProps) => {
         }
     };
 
+    const [output, setOutput] = useState(null)
+    const [hasRun, setHasRun] = useState(false);
+    const [input, setInput] = useState('');
+    const [isError, setIsError] = useState(false);
+    const Output = async (language: string, userCode: string) => {
+        console.log("Output working")
+        const runCode = async () => {
+            console.log("runCode")
+            setHasRun(true);
+            const sourceCode = userCode;
+            if (!sourceCode) return;
+            try {
+                setIsLoading(true);
+                const result = await executeCode(language, sourceCode, input);
+                // Access the 'run' property correctly
+                const runResult = result.run;
+                // console.log(runResult.output, "o/p"); // Log the 'output'
+                setOutput(runResult.output); // Set the output state
+                setWindow("output");
+                // console.log(output, "o/p")
+                runResult.stderr ? setIsError(true) : setIsError(false);
+            } catch (error: any) {
+                console.log(error);
+                toast.error(error.message, {
+                    position: "top-center",
+                    autoClose: 4000,
+                    theme: "dark",
+                });
+            }
+            finally {
+                setIsLoading(false);
+            }
+        }
+        await runCode();
+    }
+
+
     return (<>
         <div className='flex flex-col bg-color-dark-layer-1 relative overflow-x-hidden overflow-y-hidden
          h-[calc(100vh-50px)]'>
-            <PreferenceNav />
+            <PreferenceNav handleLanguageChange={handleLanguageChange} window={window} setWindow={setWindow} />
             <Split
                 className="split1 w-full h-full "
-                direction="vertical" sizes={[60, 40]} minSize={60}
+                direction="vertical" sizes={[60, 40]} minSize={[80, 80]}
             >
                 <div className='w-full overflow-auto'>
-                    <CodeMirror
+                    {window === "main" && (<CodeMirror className='h-full w-full overflow-auto'
                         theme={vscodeDark}
-                        value={userCode}
-                        extensions={[javascript()]}
+                        value={userCode || ""}
+                        extensions={[language === 'javascript' ? javascript() : language === 'python' ? python() : language === 'java' ? java() : cpp()]}
                         onChange={onChange}
-                        style={{ fontSize: 16 }}
-                    />
+                        style={{ fontSize: 16, height: "100%", width: "100%" }}
+                    />)}
+                    {window === "output" && (
+                        <div className={`w-full h-full bg-color-dark-layer-1 
+                        p-5 overflow-auto ${isError ? "text-red-500" : ""}`}
+                        >
+                            {hasRun ? (output ? <pre className={`${isError ? "text-red-500" : ""}`}>{output}</pre> : "") : "Click 'RUN' to see the output"}
+                        </div>
+                    )}
+                    {window == "inputs" && (
+                        <div className='w-full h-full bg-color-dark-layer-1 text-white p-5 overflow-auto'>
+                            <textarea className='w-full h-full bg-color-dark-layer-1 text-white p-5 overflow-auto resize-none border-none focus:outline-none'
+                                value={input}
+                                onChange={(e) => setInput(e.target.value)}
+                                placeholder="Enter input values here"
+                            />
+                        </div>)
+                    }
                 </div>
 
                 {/* Test Cases  */}
@@ -163,6 +257,11 @@ const Playground = ({ problem, setSuccess, setSolved }: PlaygroundProps) => {
             </Split>
             <EditorFooter
                 handleSubmit={handleSubmit}
+                runCode={Output}
+                language={language}
+                sourceCode={userCode}
+                input={input}
+                isLoading={isLoading}
             />
         </div>
     </>
@@ -172,21 +271,3 @@ const Playground = ({ problem, setSuccess, setSolved }: PlaygroundProps) => {
 
 export default Playground
 
-// import React from 'react';
-// import Split from 'react-split';
-
-// const Playground = () => {
-//     return (
-//         <Split
-//             className="split bg-red-500 h-full"
-//             direction="vertical"
-//             sizes={[50, 50]} // Set initial sizes for each pane
-//             minSize={[100, 100]} // Set minimum sizes for each pane
-//         >
-//             <div>Code Editor</div>
-//             <div>Testing area</div>
-//         </Split>
-//     );
-// }
-
-// export default Playground;

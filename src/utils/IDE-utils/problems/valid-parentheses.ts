@@ -1,5 +1,5 @@
 import assert from "assert";
-import { Problem } from "../types/problem";
+import { Problem, CodeSnippets } from "../types/problem";
 
 export const validParenthesesHandler = (fn: any) => {
     try {
@@ -15,6 +15,38 @@ export const validParenthesesHandler = (fn: any) => {
         throw new Error(error);
     }
 };
+
+const codeSnippets: CodeSnippets[] = [
+    {
+        language: 'javascript',
+        starterFunctionName: `function isValid(s) {
+  // Write your code here
+};`
+    },
+    {
+        language: 'python',
+        starterFunctionName: `def isValid(s):
+    # Write your code here`
+    },
+    {
+        language: 'c',
+        starterFunctionName: `bool isValid(char * s) {
+    // Write your code here
+}`
+    },
+    {
+        language: 'cpp',
+        starterFunctionName: `bool isValid(string s) {
+    // Write your code here
+}`
+    },
+    {
+        language: 'java',
+        starterFunctionName: `public boolean isValid(String s) {
+    // Write your code here
+}`
+    }
+];
 
 const starterCodeValidParenthesesJS = `function validParentheses(s) {
   // Write your code here
@@ -51,7 +83,7 @@ export const validParentheses: Problem = {
     constraints: `<li class='mt-2'><code>1 <= s.length <= 10<sup>4</sup></code></li>
 <li class='mt-2 '><code>s</code> consists of parentheses only <code class="text-md">'()[]{}'</code>.</li>`,
     handlerFunction: validParenthesesHandler,
-    starterCode: starterCodeValidParenthesesJS,
+    starterCode: codeSnippets,
     starterFunctionName: "function validParentheses(",
     order: 4,
 };
