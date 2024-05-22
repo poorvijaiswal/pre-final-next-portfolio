@@ -1,6 +1,4 @@
 "use client"
-// import Image from "next/image";
-// import bg from '../../public/background/HomeBg.jpg'
 import Navigation from '../app/portcomponents/Navigation/index'
 import RenderModel from '../app/portcomponents/RenderModel'
 const HomeModel = React.lazy(() => import('../portmodels/homemodel'));
@@ -38,10 +36,10 @@ export default function Home() {
         </div>
         <div className='mt-4'>
           <span className="tracking-wide py-4 text-4xl">I&apos;m </span>
-          <span><Link href={'/about'} className="tracking-wide cursor-pointer py-4 text-4xl text-accent font-extrabold">Pawan Kumar Gupta</Link></span>
+          <span><Link href={'/about'} className="tracking-wide cursor-pointer py-4 text-4xl text-color-brand-orange font-extrabold">Pawan Kumar Gupta</Link></span>
         </div>
         <div>
-          <h1 className=" py-4 text-3xl text-accent h-2"><span className='text-3xl text-white'>I am a</span> {typeEffect}<Cursor cursorColor='text-accent' /></h1>
+          <h1 className=" py-4 text-3xl text-color-brand-orange h-2"><span className='text-3xl text-white'>I am a</span> {typeEffect}<Cursor cursorColor='text-color-brand-orange' /></h1>
         </div>
       </div>
     </main >
