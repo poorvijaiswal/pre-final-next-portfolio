@@ -1,5 +1,5 @@
 import assert from "assert";
-import { Problem } from "../types/problem";
+import { CodeSnippets, Problem } from "../types/problem";
 import example from "./images/reverseLL.jpg";
 
 // JS doesn't have a built in LinkedList class, so we'll create one
@@ -24,6 +24,7 @@ class LinkedList {
         return prev!;
     }
 }
+
 
 export const reverseLinkedListHandler = (fn: any) => {
     try {
@@ -77,6 +78,82 @@ function reverseLinkedList(head) {
   // Write your code here
 };`;
 
+const codeSnippets: CodeSnippets[] = [
+    {
+        language: 'javascript',
+        starterFunctionName: `/**
+* Definition for singly-linked list.
+* function ListNode(val, next) {
+*     this.val = (val===undefined ? 0 : val)
+*     this.next = (next===undefined ? null : next)
+* }
+*/
+// Do not edit function name
+function reverseLinkedList(head) {
+ // Write your code here
+};`
+    },
+    {
+        language: 'python',
+        starterFunctionName: `# Definition for singly-linked list.
+class ListNode:
+    def __init__(self, val=0, next=None):
+        self.val = val
+        self.next = next
+
+# Do not edit function name
+def reverse_linked_list(head):
+    # Write your code here`
+    },
+    {
+        language: 'java',
+        starterFunctionName: `// Definition for singly-linked list.
+public class ListNode {
+    int val;
+    ListNode next;
+    ListNode() {}
+    ListNode(int val) { this.val = val; }
+    ListNode(int val, ListNode next) { this.val = val; this.next = next; }
+}
+
+// Do not edit function name
+public ListNode reverseLinkedList(ListNode head) {
+    // Write your code here
+}`
+    },
+    {
+        language: 'c',
+        starterFunctionName: `// Definition for singly-linked list.
+struct ListNode {
+    int val;
+    struct ListNode *next;
+};
+
+// Do not edit function name
+struct ListNode* reverseLinkedList(struct ListNode* head) {
+    // Write your code here
+}`
+    },
+    {
+        language: 'cpp',
+        starterFunctionName: `// Definition for singly-linked list.
+struct ListNode {
+    int val;
+    ListNode *next;
+    ListNode() : val(0), next(nullptr) {}
+    ListNode(int x) : val(x), next(nullptr) {}
+    ListNode(int x, ListNode *next) : val(x), next(next) {}
+};
+
+// Do not edit function name
+ListNode* reverseLinkedList(ListNode* head) {
+    // Write your code here
+}`
+    }
+];
+
+
+
 export const reverseLinkedList: Problem = {
     id: "reverse-linked-list",
     title: "2. Reverse Linked List",
@@ -102,7 +179,7 @@ export const reverseLinkedList: Problem = {
     ],
     constraints: `<li class='mt-2'>The number of nodes in the list is the range <code>[0, 5000]</code>.</li>
 <li class='mt-2'><code>-5000 <= Node.val <= 5000</code></li>`,
-    starterCode: starterCodeReverseLinkedListJS,
+    starterCode: codeSnippets,
     handlerFunction: reverseLinkedListHandler,
     starterFunctionName: "function reverseLinkedList(",
     order: 2,

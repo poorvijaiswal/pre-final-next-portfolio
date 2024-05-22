@@ -1,5 +1,48 @@
 import assert from "assert";
-import { Problem } from "../types/problem";
+import { Problem, CodeSnippets } from "../types/problem";
+
+const codeSnippets: CodeSnippets[] = [
+    {
+        language: 'javascript',
+        starterFunctionName: `function canJump(nums) {
+    // Write your code here
+  };`
+    },
+    {
+        language: 'python',
+        starterFunctionName: `def canJump(nums):
+    # Write your code here
+    return False # Placeholder return statement`
+    },
+    {
+        language: 'c',
+        starterFunctionName: `#include <stdbool.h>
+
+bool canJump(int* nums, int numsSize) {
+    // Write your code here
+    return false; // Placeholder return statement
+}`
+    },
+    {
+        language: 'cpp',
+        starterFunctionName: `#include <vector>
+using namespace std;
+
+bool canJump(vector<int>& nums) {
+    // Write your code here
+    return false; // Placeholder return statement
+}`
+    },
+    {
+        language: 'java',
+        starterFunctionName: `public class Solution {
+    public boolean canJump(int[] nums) {
+        // Write your code here
+        return false; // Placeholder return statement
+    }
+}`
+    }
+];
 
 export const jumpGameHandler = (fn: any) => {
     try {
@@ -54,7 +97,7 @@ export const jumpGame: Problem = {
     ],
     constraints: `<li class='mt-2'><code>1 <= nums.length <= 10^4</code></li>
     <li class='mt-2'><code>0 <= nums[i] <= 10^5</code></li>`,
-    starterCode: starterCodeJumpGameJS,
+    starterCode: codeSnippets,
     handlerFunction: jumpGameHandler,
     starterFunctionName: "function canJump(",
     order: 3,

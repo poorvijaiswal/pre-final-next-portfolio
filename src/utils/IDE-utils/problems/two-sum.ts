@@ -1,9 +1,25 @@
 import assert from "assert";
-import { Problem } from "../types/problem";
+import { CodeSnippets, Problem } from "../types/problem";
 
-const starterCodeTwoSum = `function twoSum(nums,target){
-  // Write your code here
-};`;
+// const starterCodeTwoSum = `function twoSum(nums,target){
+//   // Write your code here
+// };`;
+
+const codeSnippets: CodeSnippets[] = [
+    { language: 'javascript', starterFunctionName: 'function twoSum(nums, target) {\n    // Write your code here\n}' },
+    { language: 'python', starterFunctionName: 'def two_sum(nums, target):\n    # Write your code here' },
+    { language: 'java', starterFunctionName: 'public int[] twoSum(int[] nums, int target) {\n    // Write your code here\n}' },
+    { language: 'c', starterFunctionName: 'int* twoSum(int* nums, int numsSize, int target) {\n    // Write your code here\n}' },
+    { language: 'cpp', starterFunctionName: 'vector<int> twoSum(vector<int>& nums, int target) {\n    // Write your code here\n}' }
+];
+
+const checkHandlerTwoSum = {
+    "javascript": "function twoSum(",
+    "python": "def two_sum(",
+    "java": "public int[] twoSum(",
+    "c": "int* twoSum(",
+    "cpp": "vector<int> twoSum("
+}
 
 // checks if the user has the correct code
 const handlerTwoSum = (fn: any) => {
@@ -77,7 +93,7 @@ export const twoSum: Problem = {
 <strong>Only one valid answer exists.</strong>
 </li>`,
     handlerFunction: handlerTwoSum,
-    starterCode: starterCodeTwoSum,
+    starterCode: codeSnippets,
     order: 1,
     starterFunctionName: "function twoSum(",
 };

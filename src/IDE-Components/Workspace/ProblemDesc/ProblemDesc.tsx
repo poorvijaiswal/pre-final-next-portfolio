@@ -4,7 +4,6 @@ import RectangleSkeleton from '@/IDE-Components/Skeletons/RectangleSkeleton';
 import { auth, firestore } from '@/firebase/firebase'
 import { DBProblem, Problem } from '@/utils/IDE-utils/types/problem'
 import { doc, getDoc, runTransaction } from 'firebase/firestore'
-import Image from 'next/image';
 import React, { useEffect, useState } from 'react'
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { AiFillDislike, AiFillLike, AiFillStar, AiOutlineLoading3Quarters } from 'react-icons/ai'
@@ -134,7 +133,7 @@ const ProblemDesc = ({ problem, _solved }: ProblemDescProps) => {
                             {problem.examples.map((example, index) => (
                                 <div key={example.id}>
                                     <p className='font-medium text-white '>Example {index + 1}: </p>
-                                    {example.img && <Image src={example.img} alt='' className='mt-3' />}
+                                    {example.img && <img src={example.img} alt='' className='mt-3' />}
                                     <div className='example-card'>
                                         <pre>
                                             <strong className='text-white'>Input: </strong> {example.inputText}
