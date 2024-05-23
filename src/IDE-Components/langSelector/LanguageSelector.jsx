@@ -16,7 +16,7 @@ const LanguageSelector = ({ handleLanguageChange }) => {
             <select
                 onChange={handleChange}
                 value={language}
-                className="p-2 border rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 bg-color-dark-layer-1 text-[14px] border-none outline-none"
+                className="p-2 border rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 bg-color-dark-layer-1 text-[14px] border-none outline-none text-white"
             >
                 {languages.map(([language, version]) => (
                     <option key={language} value={language}>

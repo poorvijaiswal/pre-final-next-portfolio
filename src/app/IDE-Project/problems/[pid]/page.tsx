@@ -32,7 +32,7 @@ type ProblemPageProps = {
 }
 
 export async function getProblemById(pid: string) {
-    let response = await fetch(`http://localhost:3000/IDE-Project/api/problem/${pid}`,
+    let response = await fetch(`${process.env.NEXT_PUBLIC_PID_API_URL}/IDE-Project/api/problem/${pid}`,
         { method: 'GET', cache: 'no-store' });
 
     const responseFinal: Problem = await response.json();
