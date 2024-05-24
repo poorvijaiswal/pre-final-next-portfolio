@@ -22,7 +22,7 @@ const AboutDetails = () => {
                     " col-span-full lg:col-span-8  flex-col items-start"
                 }>
                     <h2 className="  text-xl md:text-2xl text-left w-full capitalize">
-                        Poorvi Jaiswal
+                        Pawan Kumar Gupta
                     </h2>
                     <p className="font-light  text-xs sm:text-sm md:text-base   ">
                         As a current professor, I bring extensive expertise in SalesForce, Robotic Process Automation, and computer networking.
