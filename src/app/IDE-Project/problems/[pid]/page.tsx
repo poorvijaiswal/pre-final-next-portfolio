@@ -4,7 +4,6 @@ import Workspace from '@/IDE-Components/Workspace/Workspace'
 import { problems } from '@/utils/IDE-utils/problems'
 import { Problem } from '@/utils/IDE-utils/types/problem'
 // import useHasMounted from '@/hooks/useHasMounted'
-
 //  SSG
 // getStaticPaths => it create the dynamic routes
 export async function getStaticPaths() {

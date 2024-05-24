@@ -77,7 +77,7 @@ const About = () => {
                         Hello!
                     </h1>
                     <p className="font-light text-foreground text-lg mt-1">
-                        Please scroll down to discover more about Poorvi Jaiswal.
+                        Please scroll down to discover more about Pawan Kumar Gupta.
                     </p>
                 </div>
                 <FireFliesBg />
