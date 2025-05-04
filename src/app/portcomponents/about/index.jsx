@@ -2,6 +2,7 @@ import React from "react";
 import ItemLayout from "./ItemLayout";
 // import Link from "next/link";
 import Image from "next/image";
+import js from "../../../../public/background/profile.jpeg";
 import ProgressBar from "@ramonak/react-progress-bar";
 
 const AboutDetails = () => {
@@ -9,20 +10,21 @@ const AboutDetails = () => {
         <section className="py-20 w-full bgGradient">
             <div className="grid grid-cols-12 gap-4 xs:gap-6 lg:px-8 md:px-4 md:gap-8 w-full sm:px-4 px-4">
                 <ItemLayout
-                    className={"col-span-full sm:col-span-6 md:col-span-4 !p-0"}
+                    className={"col-span-full sm:col-span-4 md:col-span-4 lg:col-span-3 !p-0"} style={{ height: '100px', width:'200px'}} 
                 >
                     <Image
-                        className="w-full h-auto text-white"
-                        alt="Profile Image"
+                        className="w-full h-auto text-white object-cover" 
+                        alt="Profile Picture"
                         loading="lazy"
+                        src={js} style={{ width: '100%', height: '100%', borderRadius: '12px' }} 
                     />
                 </ItemLayout>
 
                 <ItemLayout className={
-                    " col-span-full lg:col-span-8  flex-col items-start"
+                    " col-span-full sm:col-span-8 md:col-span-8 flex-col items-start lg:col-span-9"
                 }>
                     <h2 className="  text-xl md:text-2xl text-left w-full capitalize">
-                        Pawan Kumar Gupta
+                        Poorvi Jaiswal
                     </h2>
                     <p className="font-light  text-xs sm:text-sm md:text-base   ">
                         As a current professor, I bring extensive expertise in SalesForce, Robotic Process Automation, and computer networking.
