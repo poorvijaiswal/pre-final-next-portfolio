@@ -27,8 +27,10 @@ const AboutDetails = () => {
                         Poorvi Jaiswal
                     </h2>
                     <p className="font-light  text-xs sm:text-sm md:text-base   ">
-                        As a current professor, I bring extensive expertise in SalesForce, Robotic Process Automation, and computer networking.
-                        With a deep understanding of computer software development, I impart practical insights and theoretical foundations to students. Proficient in programming languages such as LISP, C, C++, Java, and web technologies like HTML and CSS, I foster an engaging learning environment. Additionally, my command over Linux ensures a comprehensive understanding of operating systems. Committed to empowering future industry leaders, I aim to inspire students to excel in the dynamic field of technology with hands-on experience and theoretical knowledge
+                        I am Poorvi Jaiswal, an aspiring web developer with a strong passion for creating efficient, scalable, and user-friendly 
+                        digital solutions. With hands-on experience in React, Node.js, SQL, and API integration.<br /><br />
+                        I enjoy designing and developing applications that focus on performance and seamless user experiences. I am continuously enhancing my technical expertise and 
+                        staying updated with the latest industry trends to deliver impactful and innovative solutions.
                     </p>
                 </ItemLayout>
 
@@ -53,7 +55,7 @@ const AboutDetails = () => {
                         <p className="pt-1">JS</p>
                         <ProgressBar completed={65} bgColor="orange" animateOnRender={true} height={15} />
 
-                        <p className="pt-1">C++</p>
+                        <p className="pt-1">ReactJS</p>
                         <ProgressBar completed={89} bgColor="green" animateOnRender={true} height={15} />
                     </div>
                 </ItemLayout>
@@ -81,7 +83,7 @@ const AboutDetails = () => {
                     className={" col-span-full xs:col-span-6 lg:col-span-4 text-accent"}
                 >
                     <p className="font-semibold w-full text-left text-2xl sm:text-5xl">
-                        5+ <sub className="font-semibold text-base">Research Papers</sub>
+                        1 <sub className="font-semibold text-base">Research Paper</sub>
                     </p>
                 </ItemLayout>
 
@@ -89,8 +91,8 @@ const AboutDetails = () => {
                     className={"col-span-full xs:col-span-6 lg:col-span-4 text-accent"}
                 >
                     <p className="font-semibold w-full text-left text-2xl sm:text-5xl">
-                        8+{" "}
-                        <sub className="font-semibold text-base">years of experience</sub>
+                        4+{" "}
+                        <sub className="font-semibold text-base">Certifications</sub>
                     </p>
                 </ItemLayout>
 
