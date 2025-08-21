@@ -102,13 +102,13 @@ export const BtnList = [
   },
   {
     label: "LinkedIn",
-    link: "https://www.linkedin.com/in/pawan-kumar-gupta-04830675/",
+    link: "https://in.linkedin.com/in/poorvi-jaiswal-02275a233?trk=public_profile_samename-profile",
     icon: "linkedin",
     newTab: true,
   },
   {
     label: "Instagram",
-    link: "https://www.instagram.com/erpawan_k_gupta/",
+    link: "https://www.instagram.com/poorvi_jaiswal08/",
     icon: "insta",
     newTab: true,
   },

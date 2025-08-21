@@ -32,10 +32,10 @@ export default function ContactData() {
 
         emailjs
             .send(
-                // import.meta.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID,
-                // import.meta.env.VITE_APP_EMAILJS_TEMPLATE_ID,
                 process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID,
                 process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID,
+                // 'service_nx1cmsa',
+                // 'template_f3lsgvc',
                 {
                     from_name: form.name,
                     to_name: "Poorvi Jaiswal",
@@ -43,7 +43,7 @@ export default function ContactData() {
                     to_email: "jaiswalpoorvii0806@gmail.com",
                     message: form.message,
                 },
-                process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY
+                'H1X7cLyqVmyK6Vc_r'
             )
             .then(
                 () => {
@@ -63,6 +63,7 @@ export default function ContactData() {
                     alert("Something went wrong. Please try again.");
                 }
             );
+            console.log(form.email);
     };
 
     return (

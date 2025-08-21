@@ -2,6 +2,7 @@ import React from "react";
 import ItemLayout from "./ItemLayout";
 // import Link from "next/link";
 import Image from "next/image";
+import js from "../../../../public/background/profile.jpeg";
 import ProgressBar from "@ramonak/react-progress-bar";
 
 const AboutDetails = () => {
@@ -9,24 +10,27 @@ const AboutDetails = () => {
         <section className="py-20 w-full bgGradient">
             <div className="grid grid-cols-12 gap-4 xs:gap-6 lg:px-8 md:px-4 md:gap-8 w-full sm:px-4 px-4">
                 <ItemLayout
-                    className={"col-span-full sm:col-span-6 md:col-span-4 !p-0"}
+                    className={"col-span-full sm:col-span-4 md:col-span-4 lg:col-span-3 !p-0"} style={{ height: '100px', width:'200px'}} 
                 >
                     <Image
-                        className="w-full h-auto text-white"
-                        alt="Profile Image"
+                        className="w-full h-auto text-white object-cover" 
+                        alt="Profile Picture"
                         loading="lazy"
+                        src={js} style={{ width: '100%', height: '100%', borderRadius: '12px' }} 
                     />
                 </ItemLayout>
 
                 <ItemLayout className={
-                    " col-span-full lg:col-span-8  flex-col items-start"
+                    " col-span-full sm:col-span-8 md:col-span-8 flex-col items-start lg:col-span-9"
                 }>
                     <h2 className="  text-xl md:text-2xl text-left w-full capitalize">
-                        Pawan Kumar Gupta
+                        Poorvi Jaiswal
                     </h2>
                     <p className="font-light  text-xs sm:text-sm md:text-base   ">
-                        As a current professor, I bring extensive expertise in SalesForce, Robotic Process Automation, and computer networking.
-                        With a deep understanding of computer software development, I impart practical insights and theoretical foundations to students. Proficient in programming languages such as LISP, C, C++, Java, and web technologies like HTML and CSS, I foster an engaging learning environment. Additionally, my command over Linux ensures a comprehensive understanding of operating systems. Committed to empowering future industry leaders, I aim to inspire students to excel in the dynamic field of technology with hands-on experience and theoretical knowledge
+                        I am Poorvi Jaiswal, an aspiring web developer with a strong passion for creating efficient, scalable, and user-friendly 
+                        digital solutions. With hands-on experience in React, Node.js, SQL, and API integration.<br /><br />
+                        I enjoy designing and developing applications that focus on performance and seamless user experiences. I am continuously enhancing my technical expertise and 
+                        staying updated with the latest industry trends to deliver impactful and innovative solutions.
                     </p>
                 </ItemLayout>
 
@@ -51,7 +55,7 @@ const AboutDetails = () => {
                         <p className="pt-1">JS</p>
                         <ProgressBar completed={65} bgColor="orange" animateOnRender={true} height={15} />
 
-                        <p className="pt-1">C++</p>
+                        <p className="pt-1">ReactJS</p>
                         <ProgressBar completed={89} bgColor="green" animateOnRender={true} height={15} />
                     </div>
                 </ItemLayout>
@@ -79,7 +83,7 @@ const AboutDetails = () => {
                     className={" col-span-full xs:col-span-6 lg:col-span-4 text-accent"}
                 >
                     <p className="font-semibold w-full text-left text-2xl sm:text-5xl">
-                        5+ <sub className="font-semibold text-base">Research Papers</sub>
+                        1 <sub className="font-semibold text-base">Research Paper</sub>
                     </p>
                 </ItemLayout>
 
@@ -87,8 +91,8 @@ const AboutDetails = () => {
                     className={"col-span-full xs:col-span-6 lg:col-span-4 text-accent"}
                 >
                     <p className="font-semibold w-full text-left text-2xl sm:text-5xl">
-                        8+{" "}
-                        <sub className="font-semibold text-base">years of experience</sub>
+                        4+{" "}
+                        <sub className="font-semibold text-base">Certifications</sub>
                     </p>
                 </ItemLayout>
 
