@@ -29,4 +29,18 @@ export const experiences = [
             "Conducted UI/UX testing to improve usability and engagement.",
         ],
     },
+    {
+        title: "LLM Post Training Intern",
+        company_name: "Ethara AI",
+        icon: ShoppingBag,
+        iconBg: "#383E56",
+        date: "January 2026 - April 2026",
+        points: [
+            "Evaluated multimodal AI outputs including text, image, audio, and video based on quality and instruction-following guidelines.",
+            "Performed human-in-the-loop feedback to support post-training optimization of Large Language Models (LLMs).",
+            "Compared and ranked model responses for accuracy, coherence, relevance, and contextual understanding.",
+            "Followed structured evaluation rubrics to improve response quality and benchmark AI performance.",
+            "Contributed to reinforcement learning workflows by providing detailed annotations and preference-based assessments.",
+        ],
+    },
 ];

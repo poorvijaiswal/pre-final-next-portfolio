@@ -1,4 +1,4 @@
-import { BookOpenCheck, Github, Home, Instagram, Linkedin, PaperclipIcon, Phone, User } from 'lucide-react';
+import { BriefcaseBusiness, Github, Home, Instagram, Linkedin, PaperclipIcon, Phone, User } from 'lucide-react';
 import Link from 'next/link';
 import React from 'react';
 import ResponsiveComponent from '../ResponsiveComponent';
@@ -10,8 +10,8 @@ const NavButton = ({ x, y, label, link, icon, newTab }) => {
                 return <Home className='w-full h-auto' strokeWidth={1.5} />;
             case "about":
                 return <User className='w-full h-auto' strokeWidth={1.5} />;
-            case "courses":
-                return <BookOpenCheck className='w-full h-auto' strokeWidth={1.5} />;
+            case "projects":
+                return <BriefcaseBusiness className='w-full h-auto' strokeWidth={1.5} />;
             case "contact":
                 return <Phone className='w-full h-auto' strokeWidth={1.5} />;
             case "github":

@@ -1,0 +1,99 @@
+"use client";
+import { motion, useScroll, useTransform } from "framer-motion";
+import Image from "next/image";
+import Link from "next/link";
+import { useEffect, useRef } from "react";
+
+const items = [
+  {
+    id: 1,
+    color: "from-slate-950 to-blue-950",
+    title: "LeetClone",
+    desc: "A coding platform inspired by LeetCode where users solve DSA problems, submit code, view results, and track progress, built with efficient backend, authentication, and code execution system.",
+    img: "/IDE-PROJ-IMG/hero.png",
+    link: "/IDE-Project/auth",
+  },
+  {
+    id: 2,
+    color: "from-blue-950 to-slate-950",
+    title: "Portfolio Nexus",
+    desc: "A polished showcase project for presenting personal work, experience, and live demos with a modern visual layout.",
+    img: "/Portfolio.png",
+    link: "/IDE-Project/auth",
+  },
+  {
+    id: 3,
+    color: "from-slate-950 to-blue-950",
+    title: "DineEasy Project",
+    desc: "A smart restaurant platform enabling users to browse menus, reserve tables, order food, and make payments seamlessly, featuring user authentication, real-time availability, and an intuitive interface for smooth dining experiences.",
+    img: "/DineEasy.png",
+    link: "/IDE-Project/auth",
+  },
+  {
+    id: 4,
+    color: "from-blue-950 to-slate-950",
+    title: "i-Mitra Project",
+    desc: "i-Mitra is a citizen grievance management system enabling users to report civic issues with location and images, allowing authorities to assign workers, track resolution progress, and ensure transparent, efficient service delivery.",
+    img: "/background/img13.png",
+    link: "/IDE-Project/auth",
+  },
+];
+
+export default function Projects() {
+  const ref = useRef();
+
+  const { scrollYProgress } = useScroll({ target: ref });
+  const x = useTransform(scrollYProgress, [0, 1], ["25%", "-75%"]);
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
+  return (
+    <div>
+      <div className="h-[500vh] relative" ref={ref}>
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.5 }}
+          className="max-w-full h-[calc(100vh)] flex items-center justify-center text-2xl sm:text-4xl md:text-4xl text-center"
+        >
+          Explore the spotlighted projects listed below
+        </motion.div>
+        <div className="sticky top-0 flex h-screen gap-2 items-center overflow-hidden">
+          <motion.div style={{ x }} className="flex">
+            {items.map((item) => (
+              <div
+                className={`h-screen w-screen flex items-center justify-center bg-gradient-to-r ${item.color}`}
+                key={item.id}
+              >
+                <motion.div
+                  className="flex flex-col gap-4 text-white"
+                  initial={{ opacity: 0, scale: 0.8 }}
+                  whileInView={{ opacity: 1, scale: 1 }}
+                  transition={{ duration: 0.5 }}
+                  viewport={{ once: true }}
+                >
+                  <h1 className="text-xl font-bold md:text-4xl lg:text-6xl xl:text-6xl">
+                    {item.title}
+                  </h1>
+                  <div className="relative w-80 h-56 md:w-96 md:h-64 lg:w-[500px] overflow-hidden lg:h-[250px]">
+                    <Image src={item.img} alt="" width={350} height={250} className="object-center" />
+                  </div>
+                  <p className="w-80 md:w-96 lg:w-[500px] lg:text-lg xl:w-[600px]">
+                    {item.desc}
+                  </p>
+                  <Link href={item.link} className="flex justify-end">
+                    <button className="p-2 text-sm md:p-4 md:text-md lg:p-6 lg:text-lg bg-white text-gray-600 font-semibold m-4 rounded">
+                      Open Project
+                    </button>
+                  </Link>
+                </motion.div>
+              </div>
+            ))}
+          </motion.div>
+        </div>
+      </div>
+    </div>
+  );
+}
